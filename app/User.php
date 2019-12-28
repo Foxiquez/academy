@@ -19,7 +19,8 @@ class User extends Authenticatable
     protected const NEW_USER_STATUS = 0;
     protected const ACTIVE_STATUS = 1;
     protected const FREEZED_STATUS = 2;
-    protected const BANNED_STATUS = 3;
+    protected const REJECTED_STATUS = 3;
+    protected const BANNED_STATUS = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -65,16 +66,24 @@ class User extends Authenticatable
     }
 
     //// Check statuses;
+    public function isNew(): bool
+    {
+        return $this->status === self::NEW_USER_STATUS;
+    }
     public function isActive(): bool
     {
-        return $this->status === self::ROLE_STUDENT;
+        return $this->status === self::ACTIVE_STATUS;
     }
     public function isFreezed(): bool
     {
-        return $this->status === self::ROLE_STUDENT;
+        return $this->status === self::FREEZED_STATUS;
+    }
+    public function isRejected(): bool
+    {
+        return $this->status === self::REJECTED_STATUS;
     }
     public function isBanned(): bool
     {
-        return $this->status === self::ROLE_STUDENT;
+        return $this->status === self::BANNED_STATUS;
     }
 }
