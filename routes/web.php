@@ -17,11 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/recruit', 'RecruitController@index')->name('recruit');
-});
-
 
 Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'middleware' => ['auth', 'active']], function () {
     // Panel routes;
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/recruit', 'RecruitController@index')->name('recruit');
+
+    Route::post('application', 'Panel\ApplicationController@store')->name('application.store');
+    Route::patch('application/{id}/update', 'Panel\ApplicationController@update')->name('application.update');
 });

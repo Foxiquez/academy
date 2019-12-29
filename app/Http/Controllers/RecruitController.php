@@ -15,7 +15,7 @@ class RecruitController extends Controller
         else if (!isset($user->application)) return view('auth.recruit.application');
         else
         {
-            $last_notification = $user->notifications()->last();
+            $last_notification = $user->notifications()->latest()->first();
             return view('auth.recruit.info', compact('last_notification'));
         }
     }

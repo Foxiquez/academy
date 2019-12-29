@@ -1,11 +1,11 @@
+Notify date = [title, type, icon, text, author]
+
 1. Init;
 2. Config;
 3. Status db + seed;
 4. Refactor status and roles;
-5. j
-m
-e
-
-
+5. If active middleware, start basic views and recruit controller
+6. If active middleware, start basic views and recruit controller
+7. Application entity
 
 ;

@@ -16,11 +16,11 @@ class User extends Authenticatable
     protected const ROLE_ADMIN = 2;
 
 
-    protected const NEW_USER_STATUS = 0;
-    protected const ACTIVE_STATUS = 1;
-    protected const FREEZED_STATUS = 2;
-    protected const REJECTED_STATUS = 3;
-    protected const BANNED_STATUS = 4;
+    public const NEW_USER_STATUS = 0;
+    public const ACTIVE_STATUS = 1;
+    public const FREEZED_STATUS = 2;
+    public const REJECTED_STATUS = 3;
+    public const BANNED_STATUS = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'email', 'password', 'role'
+        'login', 'email', 'password', 'role', 'status'
     ];
 
     /**
@@ -48,6 +48,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function application()
+    {
+        return $this->hasOne(Application::class);
+    }
 
     //// Check roles;
     public function isTeacher(): bool
