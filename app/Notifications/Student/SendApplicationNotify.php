@@ -43,7 +43,7 @@ class SendApplicationNotify extends Notification
         return [
             'title'     => 'notify.sendApplication.title',
             'type'      => 'info',
-            'icon'      => 'assignment_ind',
+            'icon'      => 'note_add',
             'text'      => 'notify.sendApplication.text',
             'author'    => 'notify.system.author',
         ];

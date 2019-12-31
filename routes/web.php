@@ -12,14 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 Auth::routes();
 
 
 Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'middleware' => ['auth', 'active']], function () {
-    // Panel routes;
+    Route::get('/', function () {
+        return view('panel.home');
+    })->name('home');
 });
 
 Route::middleware(['auth'])->group(function () {
