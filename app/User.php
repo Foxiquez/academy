@@ -11,9 +11,9 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
-    protected const ROLE_STUDENT = 0;
-    protected const ROLE_TEACHER = 1;
-    protected const ROLE_ADMIN = 2;
+    public const ROLE_STUDENT = 0;
+    public const ROLE_TEACHER = 1;
+    public const ROLE_ADMIN = 2;
 
 
     public const NEW_USER_STATUS = 0;
@@ -49,6 +49,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getNameAttribute()
+    {
+        $data = (array)json_decode($this->application->data);
+        if ($data['second_name'])
+        {
+            $data['second_name'] = $data['second_name'].' ';
+        }
+        return ($data['first_name'].' '.$data['second_name'].$data['surname']);
+    }
 
     public function application()
     {

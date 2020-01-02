@@ -8,3 +8,6 @@
         @endforeach
     </div>
 @endsection
+@push('menu-active')
+    menu_home
+@endpush

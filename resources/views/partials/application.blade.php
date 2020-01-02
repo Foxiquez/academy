@@ -21,13 +21,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('birth', 'Дата рождения', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('birth', null, ['class' => 'form-control']) }}
+                            {{ Form::text('birth', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('age', 'Возраст', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('age', null, ['class' => 'form-control']) }}
+                            {{ Form::text('age', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('first_name', 'Имя', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('first_name', null, ['class' => 'form-control']) }}
+                            {{ Form::text('first_name', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -47,7 +47,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('surname', 'Фамилия', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('surname', null, ['class' => 'form-control']) }}
+                            {{ Form::text('surname', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('adress', 'Адрес проживания', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('adress', null, ['class' => 'form-control']) }}
+                            {{ Form::text('adress', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('email', 'Адрес электронной почты', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::email('email', null, ['class' => 'form-control']) }}
+                            {{ Form::email('email', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -78,7 +78,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('mobile_number', 'Мобильный номер телефона', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::number('mobile_number', null, ['class' => 'form-control']) }}
+                            {{ Form::number('mobile_number', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('has_psychic', 'Были ли у Вас психические заболевания? Если да, то какие?', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('has_psychic', null, ['class' => 'form-control']) }}
+                            {{ Form::text('has_psychic', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('has_psychic_illnes', 'Находились ли вы на лечении в психологических клиниках? Если да, то по какой причине?', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('has_psychic_illnes', null, ['class' => 'form-control']) }}
+                            {{ Form::text('has_psychic_illnes', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('has_physical', 'Если у Вас есть задержка физического развития, то в чем она заключается?', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('has_physical', null, ['class' => 'form-control']) }}
+                            {{ Form::text('has_physical', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('has_medical', 'Перечислите все лекарства по рецепту, которые Вы принимаете регулярно.', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('has_medical', null, ['class' => 'form-control']) }}
+                            {{ Form::text('has_medical', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -200,25 +200,25 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('occ_name', 'Имя:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('occ_name', null, ['class' => 'form-control']) }}
+                            {{ Form::text('occ_name', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('ooc_age', 'Возраст:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('ooc_age', null, ['class' => 'form-control']) }}
+                            {{ Form::text('ooc_age', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('time_zone', 'Часовой пояс:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('time_zone', null, ['class' => 'form-control']) }}
+                            {{ Form::text('time_zone', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             {{ Form::label('ooc_locate', 'Место жительства:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('ooc_locate', null, ['class' => 'form-control']) }}
+                            {{ Form::text('ooc_locate', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -226,7 +226,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{ Form::label('this_project', 'Время игры на данном проекте и фракции:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('this_project', null, ['class' => 'form-control']) }}
+                            {{ Form::text('this_project', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -234,13 +234,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ Form::label('other_projects_game', 'На каких проектах играли до этого:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('other_projects_game', null, ['class' => 'form-control']) }}
+                            {{ Form::text('other_projects_game', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ Form::label('other_projects_factions', 'В каких фракциях состояли:', ['class' => 'bmd-label-floating']) }}
-                            {{ Form::text('other_projects_factions', null, ['class' => 'form-control']) }}
+                            {{ Form::text('other_projects_factions', null, ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 {{ Form::label('ooc_quent', 'Подробное описание вашего персонажа (10 предложений минимум):', ['class' => 'bmd-label-floating']) }}
-                                {{ Form::textarea('ooc_quent', null, ['class' => 'form-control', 'rows' => 5]) }}
+                                {{ Form::textarea('ooc_quent', null, ['class' => 'form-control', 'rows' => 5, 'required' => 'required']) }}
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                 <hr>
                 <hr>
                 <h4>(( OOC соглашение))</h4>
-                <p>Я ознакомлен(-а) с разделом Job Opportunities. Я соглашаюсь, что если покину сообщество в течении 14 дней, то буду занесен в черный список (ЧС) сообщества без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин. Я понимаю, что в случае слива любой информации с форумов сообщества ES-PD я буду занесен в черный список ES-PD. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с тем, что могу быть уволен за несоблюдение мануала фракции.</p>
+                <p>Я ознакомлен(-а) с разделом Job Opportunities. Я соглашаюсь, что если покину сообщество в течении 14 дней, то буду занесен в черный список (ЧС) сообщества без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин. Я понимаю, что в случае слива любой информации с форумов сообщества я буду занесен в черный список. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с тем, что могу быть уволен за несоблюдение мануала фракции.</p>
                 @if(!$user->isActive())
                     {!! Form::submit('Отправить', ['class'=>'btn btn-primary']) !!}
                     @endif

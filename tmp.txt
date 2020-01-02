@@ -8,3 +8,5 @@ Notify date = [title, type, icon, text, author]
 6. If active middleware, start basic views and recruit controller
 7. Application entity, final recruit, start notify
 8. Start panel views, final home page with notifications
+9. Refactoring login pages
+10. Add application and curators pages

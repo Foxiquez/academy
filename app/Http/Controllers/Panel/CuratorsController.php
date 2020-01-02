@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Panel;
 
-use App\Application;
-use App\Notifications\Student\SendApplicationNotify;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-class ApplicationController extends Controller
+class CuratorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,8 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        return view('panel.application.index');
+        $curators = User::where('role', User::ROLE_TEACHER)->get();
+        return view('panel.curators.index', compact('curators'));
     }
 
     /**
@@ -38,9 +37,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->application()->create(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
-        Auth::user()->notify(new SendApplicationNotify());
-        return redirect()->back();
+        //
     }
 
     /**
@@ -74,13 +71,7 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::user()->isFreezed() and $id == Auth::user()->application->id)
-        {
-            Application::find($id)->update(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
-            Auth::user()->update(['status' => \App\User::NEW_USER_STATUS]);
-            return redirect()->back();
-        }
-
+        //
     }
 
     /**

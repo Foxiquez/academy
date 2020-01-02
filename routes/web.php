@@ -22,6 +22,9 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
     Route::get('/', function () {
         return view('panel.home');
     })->name('home');
+
+    Route::resource('application', 'ApplicationController');
+    Route::resource('curators', 'CuratorsController');
 });
 
 Route::middleware(['auth'])->group(function () {

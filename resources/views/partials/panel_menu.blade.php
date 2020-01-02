@@ -11,7 +11,7 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active  ">
+            <li class="nav-item" id="menu_home">
                 <a class="nav-link" href="{{ route("panel.home") }}">
                     <i class="material-icons">home</i>
                     <p>{{ trans('panel.menu.home') }}</p>
@@ -23,19 +23,19 @@
                     <p>{{ trans('panel.menu.personal_file') }}</p>
                 </a>
             </li>
-            <li class="nav-item">
+--}}          <li class="nav-item">
                 <a class="nav-link" href="{{ route("panel.application.index") }}">
                     <i class="material-icons">account_box</i>
                     <p>{{ trans('panel.menu.application') }}</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route("panel.curators") }}">
+            <li class="nav-item" id="menu_curators">
+                <a class="nav-link" href="{{ route("panel.curators.index") }}">
                     <i class="material-icons">content_paste</i>
                     <p>{{ trans('panel.menu.curators') }}</p>
                 </a>
             </li>
-            <li class="nav-item ">
+{{--            <li class="nav-item ">
                 <a class="nav-link" href="">
                     <i class="material-icons">library_books</i>
                     <p>Typography</p>
