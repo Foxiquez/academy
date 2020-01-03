@@ -52,16 +52,26 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         $data = (array)json_decode($this->application->data);
-        if ($data['second_name'])
+        if ($data)
         {
-            $data['second_name'] = $data['second_name'].' ';
+            if ($data['second_name'])
+            {
+                $data['second_name'] = $data['second_name'].' ';
+            }
+            return ($data['first_name'].' '.$data['second_name'].$data['surname']);
         }
-        return ($data['first_name'].' '.$data['second_name'].$data['surname']);
+        return null;
+
     }
 
     public function application()
     {
         return $this->hasOne(Application::class);
+    }
+
+    public function lections()
+    {
+        return $this->hasMany(Lection::class);
     }
 
     //// Check roles;

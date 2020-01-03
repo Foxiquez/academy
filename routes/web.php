@@ -25,6 +25,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
 
     Route::resource('application', 'ApplicationController');
     Route::resource('curators', 'CuratorsController');
+    Route::resource('lections', 'LectionsController');
 });
 
 Route::middleware(['auth'])->group(function () {
