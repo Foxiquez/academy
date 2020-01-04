@@ -9,7 +9,7 @@
                 </p>
             </div>
             <div class="card-body">
-                @if(count($lections::where('is_active', 1)->get()) == 0)
+                @if(count($lections) == 0)
                     <div class="col-md-6 ml-auto mr-auto text-center">
                         <h4 class="card-title">
                             {{ trans('panel.lections.no_lections') }}
@@ -39,30 +39,30 @@
                                 </th>
                             </thead>
                             <tbody>
-                                @foreach($lections::get() as $lection)
-                                    @if($lection->is_active == true)
-                                        <tr>
-                                            <td>
-                                                {{ $lection->id }}
-                                            </td>
-                                            <td>
-                                                {{ $lection->title }}
-                                            </td>
-                                            <td>
-                                                {{ $lection->author }}
-                                            </td>
-                                            <td>
-                                                {{ $lection->created_at->diffForHumans() }}
-                                            </td>
-                                            <td>
-                                                {{ $lection->updated_at->diffForHumans() }}
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary" href="{{route('panel.lections.show', $lection->id)}}" target="_blank">{{ __('Читать') }}</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
+                            @foreach($lections as $lection)
+                                <tr>
+                                    <td>
+                                        {{ $lection->id }}
+                                    </td>
+                                    <td>
+                                        {{ $lection->title }}
+                                    </td>
+                                    <td>
+                                        {{ $lection->author }}
+                                    </td>
+                                    <td>
+                                        {{ $lection->created_at->diffForHumans() }}
+                                    </td>
+                                    <td>
+                                        {{ $lection->updated_at->diffForHumans() }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary"
+                                           href="{{route('panel.lections.show', $lection->slug)}}"
+                                           target="_blank">{{ __('Читать') }}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

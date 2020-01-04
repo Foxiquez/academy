@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Lection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LectionsController extends Controller
 {
@@ -15,7 +16,8 @@ class LectionsController extends Controller
      */
     public function index()
     {
-        $lections = Lection::class;
+        if (Auth::user()->isTeacher()) $lections = Lection::get();
+        else if (Auth::user()->isStudent()) $lections = Lection::where('is_active', true)->get();
         return view('panel.lections.index', compact('lections'));
     }
 
@@ -46,9 +48,10 @@ class LectionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $lection = Lection::where('slug', $slug)->get()->first();
+        return view('panel.lections.show', compact('lection'));
     }
 
     /**

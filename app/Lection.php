@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Lection extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
 
     protected $date = ['deleted_at'];
 
@@ -17,9 +18,19 @@ class Lection extends Model
         'is_active'
     ];
 
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source'    => 'title',
+                'onUpdate'  => false,
+            ]
+        ];
+    }
+
     public function getAuthorAttribute($value)
     {
-        return $this->user->name !== null ? $this->user->name : trans('panel.lections.no_author');
+        return isset($this->user->name) ? $this->user->name : trans('panel.lections.no_author');
     }
 
     public function getTitleAttribute($value)

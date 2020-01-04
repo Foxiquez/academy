@@ -18,6 +18,7 @@ class CreateLectionsTable extends Migration
             $table->tinyInteger('user_id');
             $table->boolean("is_active")->default(false);
             $table->string('title');
+            $table->string('slug')->nullable();
             $table->text('data');
             $table->timestamps();
             $table->softDeletes();
