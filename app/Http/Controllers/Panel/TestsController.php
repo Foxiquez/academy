@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Panel;
 
-use App\Lection;
+use App\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class LectionsController extends Controller
+class TestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,12 @@ class LectionsController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->isTeacher()) $lections = Lection::paginate(5);
-        else if (Auth::user()->isStudent()) $lections = Lection::where('is_active', true)->paginate(5);
-        return view('panel.lections.index', compact('lections'));
+        $test = Test::where('is_active', true)->get()->first();
+        if ($test)
+        {
+            if (in_array(Auth::user()->id, (array)$test->answers->pluck('user_id'))) $test = null;
+        }
+        return view('panel.tests.index', compact('test'));
     }
 
     /**
@@ -42,16 +45,20 @@ class LectionsController extends Controller
         //
     }
 
+    public function storeAnswer(Request $request)
+    {
+        //
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $lection = Lection::where('slug', $slug)->get()->first();
-        return view('panel.lections.show', compact('lection'));
+        //
     }
 
     /**

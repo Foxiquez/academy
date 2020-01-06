@@ -41,6 +41,12 @@
                     <p>{{ trans('panel.menu.lections') }}</p>
                 </a>
             </li>
+            <li class="nav-item " id="menu_tests">
+                <a class="nav-link" href="{{ route("panel.test.index") }}">
+                    <i class="material-icons">library_books</i>
+                    <p>{{ trans('panel.menu.tests') }}</p>
+                </a>
+            </li>
             {{--             <li class="nav-item ">
                             <a class="nav-link" href="./icons.html">
                                 <i class="material-icons">bubble_chart</i>

@@ -77,7 +77,8 @@ class User extends Authenticatable
     //// Check roles;
     public function isTeacher(): bool
     {
-        return $this->role === self::ROLE_TEACHER;
+        if ($this->isAdmin() or $this->role === self::ROLE_TEACHER) return true;
+        else return false;
     }
 
     public function isAdmin(): bool

@@ -28,16 +28,27 @@ class Lection extends Model
         ];
     }
 
+    /**
+     * @param $value
+     * @return array|\Illuminate\Contracts\Translation\Translator|string|null
+     */
     public function getAuthorAttribute($value)
     {
         return isset($this->user->name) ? $this->user->name : trans('panel.lections.no_author');
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
     public function getTitleAttribute($value)
     {
         return \Illuminate\Support\Str::limit($value, 25);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

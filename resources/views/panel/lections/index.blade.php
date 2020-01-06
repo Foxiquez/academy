@@ -65,6 +65,12 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div style="margin: 0 auto;">
+                            {{ $lections->render() }}
+                        </div>
                     </div>
                 @endif
             </div>

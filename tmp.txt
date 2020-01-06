@@ -11,3 +11,4 @@ Notify date = [title, type, icon, text, author]
 9. Refactoring login pages
 10. Add application and curators pages
 11. Start lections page;
+12. Finish lections page;
