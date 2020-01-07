@@ -9,7 +9,8 @@ class TestAnswer extends Model
     protected $date = ['deleted_at'];
 
     protected $fillable = [
-        'data'
+        'data',
+        'user_id'
     ];
 
     public function user()

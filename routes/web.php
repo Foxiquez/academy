@@ -33,6 +33,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
 Route::middleware(['auth'])->group(function () {
     Route::get('/recruit', 'RecruitController@index')->name('recruit');
 
-    Route::post('application', 'Panel\ApplicationController@store')->name('application.store');
-    Route::patch('application/{id}/update', 'Panel\ApplicationController@update')->name('application.update');
+    Route::post('application/create', 'Panel\ApplicationController@store')->name('application.store');
+    Route::patch('application/update', 'Panel\ApplicationController@update')->name('application.update');
 });

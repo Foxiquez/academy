@@ -72,11 +72,11 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        if (Auth::user()->isFreezed() and $id == Auth::user()->application->id)
+        if (Auth::user()->isFreezed())
         {
-            Application::find($id)->update(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
+            Auth::user()->application()->update(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
             Auth::user()->update(['status' => \App\User::NEW_USER_STATUS]);
             return redirect()->back();
         }

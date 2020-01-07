@@ -14,6 +14,8 @@ return [
     */
 
     'title' => 'R&AS',
-    'name'  => 'Samp police recruit & academy system'
+    'name'  => 'Samp police recruit & academy system',
+
+    'success_answer'   =>  'Ваш ответ успешно записан, ожидайте проверки и уведомления!'
 
 ];

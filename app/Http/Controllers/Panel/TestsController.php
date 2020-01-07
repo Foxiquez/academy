@@ -6,6 +6,7 @@ use App\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class TestsController extends Controller
 {
@@ -19,7 +20,7 @@ class TestsController extends Controller
         $test = Test::where('is_active', true)->get()->first();
         if ($test)
         {
-            if (in_array(Auth::user()->id, (array)$test->answers->pluck('user_id'))) $test = null;
+            if (in_array(Auth::user()->id, $test->answers->pluck('user_id')->toArray())) $test = null;
         }
         return view('panel.tests.index', compact('test'));
     }
@@ -47,7 +48,17 @@ class TestsController extends Controller
 
     public function storeAnswer(Request $request)
     {
-        //
+        $test = Test::where('is_active', true)->get()->first();
+        if ($test)
+        {
+            Test::find($test->id)->answers()->create([
+                'data'  =>  json_encode($request->all(), JSON_UNESCAPED_UNICODE),
+                'user_id'   =>  Auth::user()->id,
+                ]
+            );
+            Session::flash('success');
+        }
+        return back();
     }
 
     /**

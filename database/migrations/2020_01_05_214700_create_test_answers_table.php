@@ -15,13 +15,13 @@ class CreateTestAnswersTable extends Migration
     {
         Schema::create('test_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('test_id')->unique();
             $table->unsignedBigInteger('user_id');
             $table->text('data');
             $table->timestamps();
 
-            $table->foreign('test_id')->references('id')->on('tests');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
