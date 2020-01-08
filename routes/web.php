@@ -27,7 +27,13 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
     Route::resource('curators', 'CuratorsController');
     Route::resource('lections', 'LectionsController');
     Route::resource('test', 'TestsController');
+
     Route::post('test/answer', 'TestsController@storeAnswer')->name('test.store.answer');
+
+    Route::get('/chat', 'ChatController@index')->name('chat.index');
+    Route::post('/messages/send', 'ChatController@send')->name('chat.send');
+    Route::get('/messages/json', 'ChatController@messages')->name('chat.json');
+    Route::get('/messages/count', 'ChatController@countMessages')->name('chat.countMessages');
 });
 
 Route::middleware(['auth'])->group(function () {

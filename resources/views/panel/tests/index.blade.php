@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     {!! Form::submit('Отправить на проверку', ['class'=>'btn btn-primary']) !!}
-                    @push('form-builder')
+                    @push('scripts')
                         <script src="{{ asset('js/plugins/forms/jquery-ui.min.js') }}" defer></script>
                         <script src="{{ asset('js/plugins/forms/sweetalert.min.js') }}" defer></script>
                         <script src="{{ asset('js/plugins/forms/jquery-formbuilder/form-builder.min.js') }}" defer></script>

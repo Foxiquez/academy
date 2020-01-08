@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Panel;
 
-use App\Application;
+use App\Http\Requests\ApplicationRequest;
 use App\Notifications\Student\SendApplicationNotify;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +35,7 @@ class ApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ApplicationRequest $request)
     {
         Auth::user()->application()->create(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
         Auth::user()->notify(new SendApplicationNotify());
@@ -72,7 +71,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(ApplicationRequest $request)
     {
         if (Auth::user()->isFreezed())
         {

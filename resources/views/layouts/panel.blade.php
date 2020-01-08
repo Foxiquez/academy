@@ -349,5 +349,5 @@
 
         });
     </script>
-    @stack('form-builder')
+    @stack('scripts')
 </body>
