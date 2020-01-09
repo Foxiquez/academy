@@ -34,6 +34,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
     Route::post('/messages/send', 'ChatController@send')->name('chat.send');
     Route::get('/messages/json', 'ChatController@messages')->name('chat.json');
     Route::get('/messages/count', 'ChatController@countMessages')->name('chat.countMessages');
+
+    Route::resource('map', 'MapController');
 });
 
 Route::middleware(['auth'])->group(function () {

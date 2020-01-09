@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/map/tiles/*
 /storage/*.key
 /vendor
 .env

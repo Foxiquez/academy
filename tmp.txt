@@ -14,4 +14,4 @@ Notify date = [title, type, icon, text, author]
 12. Finish lections page;
 13. Start student testing page;
 14. Add some js files, render tests student page;
-15. Chat page, application request;
+15. ;Chat page, application request
