@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\MapItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class MapController extends Controller
      */
     public function index()
     {
-        //
+        $mapPoints = MapItem::getPrivatePoints();
+        return view('panel.map.index', compact('mapPoints'));
     }
 
     /**

@@ -16,10 +16,11 @@ class CreateMapItemsTable extends Migration
         Schema::create('map_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('dest');
+            $table->text('desc');
             $table->tinyInteger('type');
             $table->string('date');
-            $table->json('coordinates');
+            $table->float('x');
+            $table->float('y');
             $table->timestamps();
         });
     }

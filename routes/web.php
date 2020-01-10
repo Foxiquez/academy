@@ -36,6 +36,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'mi
     Route::get('/messages/count', 'ChatController@countMessages')->name('chat.countMessages');
 
     Route::resource('map', 'MapController');
+
+    Route::get('/sheets', 'SheetController@show')->name('sheet');
 });
 
 Route::middleware(['auth'])->group(function () {
