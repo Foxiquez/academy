@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return string|null
+     */
     public function getNameAttribute()
     {
         $data = (array)json_decode($this->application->data);
@@ -64,11 +68,25 @@ class User extends Authenticatable
 
     }
 
-    public function application()
+    /**
+     * @return mixed
+     */
+    public function getApplicationAttribute()
     {
-        return $this->hasOne(Application::class);
+        return UserFormAnswer::where('user_form_id', UserForm::application()->id)->where('user_id', $this->id)->first();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this->hasMany(UserFormAnswer::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function lections()
     {
         return $this->hasMany(Lection::class);

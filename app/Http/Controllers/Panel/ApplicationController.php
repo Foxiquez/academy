@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Requests\ApplicationRequest;
 use App\Notifications\Student\SendApplicationNotify;
 use App\Http\Controllers\Controller;
+use App\UserForm;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -37,8 +38,11 @@ class ApplicationController extends Controller
      */
     public function store(ApplicationRequest $request)
     {
-        Auth::user()->application()->create(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
-        Auth::user()->notify(new SendApplicationNotify());
+        if (UserForm::application()->id == $request->id)
+        {
+            Auth::user()->answers()->create(['data' =>  json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE), 'user_form_id' =>  $request->id]);
+            Auth::user()->notify(new SendApplicationNotify());
+        }
         return redirect()->back();
     }
 
@@ -71,15 +75,14 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ApplicationRequest $request)
+    public function update(ApplicationRequest $request, $id)
     {
-        if (Auth::user()->isFreezed())
+        if (Auth::user()->isFreezed() and $id == UserForm::application()->id)
         {
-            Auth::user()->application()->update(['data' => json_encode($request->all(), JSON_UNESCAPED_UNICODE)]);
+            Auth::user()->answers()->where('user_form_id', UserForm::APPLICATION_TYPE)->first()->update(['data' => json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE)]);
             Auth::user()->update(['status' => \App\User::NEW_USER_STATUS]);
-            return redirect()->back();
         }
-
+        return redirect()->back();
     }
 
     /**

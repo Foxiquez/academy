@@ -5,9 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Test extends Model
+class UserForm extends Model
 {
     use SoftDeletes;
+
+    const DEFAULT_TYPE = 'plain-form';
+    const APPLICATION_TYPE = 'application';
+    const EXAM_TYPE = 'exam';
 
     protected $date = ['deleted_at'];
 
@@ -36,6 +40,15 @@ class Test extends Model
      */
     public function answers()
     {
-        return $this->hasMany(TestAnswer::class);
+        return $this->hasMany(UserFormAnswer::class);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeApplication($query)
+    {
+        return $query->where('type', self::APPLICATION_TYPE)->first();
     }
 }
