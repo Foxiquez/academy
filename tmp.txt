@@ -17,3 +17,6 @@ Notify date = [title, type, icon, text, author]
 15. Chat page, application request;
 16. Start map, request;
 17. Final map, js files, sheet view, refactoring panel layout;
+
+18. Refactoring test + application => common forms model, migrations;
+19. Start separating recruit page, add in-depth web & api routes;

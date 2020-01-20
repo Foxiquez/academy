@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapRecruitWebRoutes();
+
         //
     }
 
@@ -53,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
              ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+             ->group(base_path('routes/web/web.php'));
     }
 
     /**
@@ -68,6 +70,22 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+             ->group(base_path('routes/api/api.php'));
     }
+
+    protected function mapRecruitWebRoutes()
+    {
+        Route::middleware('auth')
+            ->namespace($this->namespace)
+            ->prefix('recruit')
+            ->group(base_path('routes/web/recruit.php'));
+    }
+
+/*    protected function mapPanelWebRoutes()
+    {
+        Route::middleware('active')
+            ->namespace($this->namespace)
+            ->prefix('panel')
+            ->group(base_path('routes/web/panel.php'));
+    }*/
 }

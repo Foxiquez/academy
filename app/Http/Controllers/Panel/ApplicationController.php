@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Panel;
 
-use App\Http\Requests\ApplicationRequest;
+use App\Http\Requests\UserFormRequest;
 use App\Notifications\Student\SendApplicationNotify;
 use App\Http\Controllers\Controller;
 use App\UserForm;
@@ -36,7 +36,7 @@ class ApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ApplicationRequest $request)
+    public function store(UserFormRequest $request)
     {
         if (UserForm::application()->id == $request->id)
         {
@@ -75,7 +75,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ApplicationRequest $request, $id)
+    public function update(UserFormRequest $request, $id)
     {
         if (Auth::user()->isFreezed() and $id == UserForm::application()->id)
         {
