@@ -12,13 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('home');
 });
 
 Auth::routes();
 
-
-Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'middleware' => ['auth', 'active']], function () {
+/*Route::group(['prefix' => 'panel', 'as' => 'panel.', 'namespace' => 'Panel', 'middleware' => ['auth', 'active']], function () {
     Route::get('/', function () {
         return view('panel.home');
     })->name('home');
@@ -45,4 +44,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('application/create', 'Panel\ApplicationController@store')->name('application.store');
     Route::patch('application/update', 'Panel\ApplicationController@update')->name('application.update');
-});
+});*/

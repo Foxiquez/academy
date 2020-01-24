@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Panel1;
 
-use App\Lection;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-class LectionsController extends Controller
+class CuratorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class LectionsController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->isTeacher()) $lections = Lection::paginate(5);
-        else if (Auth::user()->isStudent()) $lections = Lection::where('is_active', true)->paginate(5);
-        return view('panel.lections.index', compact('lections'));
+        $curators = User::where('role', User::ROLE_TEACHER)->get();
+        return view('panel.curators.index', compact('curators'));
     }
 
     /**
@@ -48,10 +46,9 @@ class LectionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $lection = Lection::where('slug', $slug)->get()->first();
-        return view('panel.lections.show', compact('lection'));
+        //
     }
 
     /**

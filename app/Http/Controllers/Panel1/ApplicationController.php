@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Panel1;
 
-use App\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;
+use App\Notifications\Student\CreateApplicationNotify;
 use App\Http\Controllers\Controller;
+use App\UserForm;
+use Illuminate\Support\Facades\Auth;
 
-class CuratorsController extends Controller
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,7 @@ class CuratorsController extends Controller
      */
     public function index()
     {
-        $curators = User::where('role', User::ROLE_TEACHER)->get();
-        return view('panel.curators.index', compact('curators'));
+        return view('panel.application.index');
     }
 
     /**
@@ -35,9 +36,14 @@ class CuratorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+        if (UserForm::application()->id == $request->id)
+        {
+            Auth::user()->answers()->create(['data' =>  json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE), 'user_form_id' =>  $request->id]);
+            Auth::user()->notify(new CreateApplicationNotify());
+        }
+        return redirect()->back();
     }
 
     /**
@@ -69,9 +75,14 @@ class CuratorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $id)
     {
-        //
+        if (Auth::user()->isFreezed() and $id == UserForm::application()->id)
+        {
+            Auth::user()->answers()->where('user_form_id', UserForm::APPLICATION_TYPE)->first()->update(['data' => json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE)]);
+            Auth::user()->update(['status' => \App\User::NEW_USER_STATUS]);
+        }
+        return redirect()->back();
     }
 
     /**

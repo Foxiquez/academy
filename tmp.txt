@@ -20,3 +20,4 @@ Notify date = [title, type, icon, text, author]
 
 18. Refactoring test + application => common forms model, migrations;
 19. Start separating recruit page, add in-depth web & api routes;
+20. Final refactor recruit page, delete application model, add recruit routes;

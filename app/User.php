@@ -73,7 +73,7 @@ class User extends Authenticatable
      */
     public function getApplicationAttribute()
     {
-        return UserFormAnswer::where('user_form_id', UserForm::application()->id)->where('user_id', $this->id)->first();
+        return UserFormAnswer::where('user_id', $this->id)->where('user_form_id', UserForm::application()->id)->first();
     }
 
     /**

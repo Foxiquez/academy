@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SendApplicationNotify extends Notification
+class RegisterUserNotify extends Notification
 {
     use Queueable;
 
@@ -32,20 +32,15 @@ class SendApplicationNotify extends Notification
         return ['database'];
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toDatabase($notifiable)
     {
         return [
-            'title'     => 'notify.sendApplication.title',
+            'title'     => 'notify.newUser.title',
             'type'      => 'info',
             'icon'      => 'note_add',
-            'text'      => 'notify.sendApplication.text',
+            'text'      => 'notify.newUser.text',
             'author'    => 'notify.system.author',
         ];
     }
+
 }

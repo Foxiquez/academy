@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Panel1;
 
-use App\Http\Requests\UserFormRequest;
-use App\Notifications\Student\SendApplicationNotify;
+use App\Lection;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\UserForm;
 use Illuminate\Support\Facades\Auth;
 
-class ApplicationController extends Controller
+class LectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,9 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        return view('panel.application.index');
+        if (Auth::user()->isTeacher()) $lections = Lection::paginate(5);
+        else if (Auth::user()->isStudent()) $lections = Lection::where('is_active', true)->paginate(5);
+        return view('panel.lections.index', compact('lections'));
     }
 
     /**
@@ -36,14 +37,9 @@ class ApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserFormRequest $request)
+    public function store(Request $request)
     {
-        if (UserForm::application()->id == $request->id)
-        {
-            Auth::user()->answers()->create(['data' =>  json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE), 'user_form_id' =>  $request->id]);
-            Auth::user()->notify(new SendApplicationNotify());
-        }
-        return redirect()->back();
+        //
     }
 
     /**
@@ -52,9 +48,10 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $lection = Lection::where('slug', $slug)->get()->first();
+        return view('panel.lections.show', compact('lection'));
     }
 
     /**
@@ -75,14 +72,9 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        if (Auth::user()->isFreezed() and $id == UserForm::application()->id)
-        {
-            Auth::user()->answers()->where('user_form_id', UserForm::APPLICATION_TYPE)->first()->update(['data' => json_encode($request->except('_method', '_token', 'id'), JSON_UNESCAPED_UNICODE)]);
-            Auth::user()->update(['status' => \App\User::NEW_USER_STATUS]);
-        }
-        return redirect()->back();
+        //
     }
 
     /**
