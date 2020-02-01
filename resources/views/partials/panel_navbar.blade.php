@@ -1,3 +1,68 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+            R&AS PANEL
+        </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('panel.index') }}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Главная</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    @foreach($panelMenuCategories as $category)
+        <div class="sidebar-heading">
+            {{ $category->title }}
+        </div>
+
+        @foreach($category->components as $component)
+            <li class="nav-item">
+                @if(count($component->items) > 0)
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_{{  md5($component->title) }}" aria-expanded="true" aria-controls="collapse_{{  md5($component->title) }}">
+                        <i class="fas fa-fw {{ $component->icon }}"></i>
+                        <span>{{ $component->title }}</span>
+                    </a>
+                    <div id="collapse_{{  md5($component->title) }}" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">{{ $component->description }}</h6>
+                            @foreach($component->items as $item)
+                                <a class="collapse-item" href="{{ route($item->route) }}">{{ $item->title }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <a class="nav-link" href="{{ route($component->route) }}">
+                        <i class="fas fa-fw {{ $component->icon }}"></i>
+                        <span>{{ $component->title }}</span>
+                    </a>
+                @endif
+            </li>
+        @endforeach
+        <hr class="sidebar-divider">
+    @endforeach
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+{{--
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
     <div class="container-fluid">
         <div class="navbar-wrapper">
@@ -65,4 +130,4 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav>--}}

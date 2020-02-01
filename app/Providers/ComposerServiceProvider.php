@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Panel\Menu\MenuCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,9 +26,10 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function($view) {
-            if (\Auth::check())
+            if ($user = \Auth::user())
             {
-                $view->with(['user' => \Auth::user()]);
+                $categories = MenuCategory::where('access_type', $user->role)->get();
+                $view->with(['user' => $user, 'panelMenuCategories' => $categories]);
             }
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('home');
+Route::group(['as' => 'panel.', 'namespace' => 'Panel'], function () {
+
+    Route::get('/', 'HomeController@index')->name('index');
 });
